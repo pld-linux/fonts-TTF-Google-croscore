@@ -1,7 +1,7 @@
 Summary:	The width-compatible fonts for improved on-screen readability
 Name:		fonts-TTF-Google-croscore
 Version:	1.21.0
-Release:	1
+Release:	2
 License:	OFL
 Group:		Fonts
 Source0:	http://gsdview.appspot.com/chromeos-localmirror/distfiles/croscorefonts-%{version}.tar.gz
@@ -15,6 +15,7 @@ Source6:	30-0-google-croscore-tinos-fontconfig.conf
 Source7:	62-google-croscore-symbolneu-fontconfig.conf
 Requires(post,postun):	fontpostinst
 Requires:	%{_fontsdir}/TTF
+Requires:	fontconfig >= 1:2.10.1
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -35,30 +36,24 @@ platforms.
 %install
 rm -rf $RPM_BUILD_ROOT
 
-install -d $RPM_BUILD_ROOT{%{_sysconfdir}/fonts/conf.{avail,d},%{_ttffontsdir}}
+install -d $RPM_BUILD_ROOT{%{_sysconfdir}/fonts/conf.d,%{_ttffontsdir}}
+install -d $RPM_BUILD_ROOT%{_datadir}/fontconfig/conf.avail
 install -p *.ttf $RPM_BUILD_ROOT%{_ttffontsdir}
 
 # Repeat for every font family
-install -p %{SOURCE1} \
-	$RPM_BUILD_ROOT%{_sysconfdir}/fonts/conf.avail/62-google-croscore-arimo.conf
-install -p %{SOURCE2} \
-	$RPM_BUILD_ROOT%{_sysconfdir}/fonts/conf.avail/62-google-croscore-cousine.conf
-install -p %{SOURCE3} \
-	$RPM_BUILD_ROOT%{_sysconfdir}/fonts/conf.avail/62-google-croscore-tinos.conf
-install -p %{SOURCE4} \
-	$RPM_BUILD_ROOT%{_sysconfdir}/fonts/conf.avail/30-0-google-croscore-arimo.conf
-install -p %{SOURCE5} \
-	$RPM_BUILD_ROOT%{_sysconfdir}/fonts/conf.avail/30-0-google-croscore-cousine.conf
-install -p %{SOURCE6} \
-	$RPM_BUILD_ROOT%{_sysconfdir}/fonts/conf.avail/30-0-google-croscore-tinos.conf
-install -p %{SOURCE7} \
-	$RPM_BUILD_ROOT%{_sysconfdir}/fonts/conf.avail/62-google-croscore-symbolneu.conf
+install -p %{SOURCE1} $RPM_BUILD_ROOT%{_datadir}/fontconfig/conf.avail/62-google-croscore-arimo.conf
+install -p %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/fontconfig/conf.avail/62-google-croscore-cousine.conf
+install -p %{SOURCE3} $RPM_BUILD_ROOT%{_datadir}/fontconfig/conf.avail/62-google-croscore-tinos.conf
+install -p %{SOURCE4} $RPM_BUILD_ROOT%{_datadir}/fontconfig/conf.avail/30-0-google-croscore-arimo.conf
+install -p %{SOURCE5} $RPM_BUILD_ROOT%{_datadir}/fontconfig/conf.avail/30-0-google-croscore-cousine.conf
+install -p %{SOURCE6} $RPM_BUILD_ROOT%{_datadir}/fontconfig/conf.avail/30-0-google-croscore-tinos.conf
+install -p %{SOURCE7} $RPM_BUILD_ROOT%{_datadir}/fontconfig/conf.avail/62-google-croscore-symbolneu.conf
 
 for fconf in 62-google-croscore-arimo.conf 30-0-google-croscore-arimo.conf \
 	    62-google-croscore-cousine.conf 30-0-google-croscore-cousine.conf \
 	    62-google-croscore-tinos.conf 30-0-google-croscore-tinos.conf \
 	    62-google-croscore-symbolneu.conf; do
-		ln -s %{_sysconfdir}/fonts/conf.avail/$fconf \
+		ln -s %{_datadir}/fontconfig/conf.avail/$fconf \
 			$RPM_BUILD_ROOT%{_sysconfdir}/fonts/conf.d/$fconf
 done
 
@@ -78,5 +73,5 @@ fontpostinst TTF
 %{_ttffontsdir}/Cousine*.ttf
 %{_ttffontsdir}/Symbol*.ttf
 %{_ttffontsdir}/Tinos*.ttf
-%{_sysconfdir}/fonts/conf.avail/*.conf
+%{_datadir}/fontconfig/conf.avail/*.conf
 %{_sysconfdir}/fonts/conf.d/*.conf
