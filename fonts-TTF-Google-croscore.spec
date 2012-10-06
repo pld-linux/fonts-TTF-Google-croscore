@@ -1,7 +1,7 @@
 Summary:	The width-compatible fonts for improved on-screen readability
 Name:		fonts-TTF-Google-croscore
 Version:	1.21.0
-Release:	2
+Release:	3
 License:	OFL
 Group:		Fonts
 Source0:	http://gsdview.appspot.com/chromeos-localmirror/distfiles/croscorefonts-%{version}.tar.gz
