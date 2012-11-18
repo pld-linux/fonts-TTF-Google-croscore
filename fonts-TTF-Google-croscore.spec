@@ -1,4 +1,5 @@
 Summary:	The width-compatible fonts for improved on-screen readability
+Summary(pl.UTF-8):	Fonty o zgodnej szerokości z poprawioną czytelnością na ekranie
 Name:		fonts-TTF-Google-croscore
 Version:	1.23.0
 Release:	1
@@ -23,10 +24,17 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 This package contains a collections of fonts that offers improved
-on-screen \ readability characteristics and the pan-European WGL
-character set and solves \ the needs of developers looking for
-width-compatible fonts to address document \ portability across
+on-screen readability characteristics and the pan-European WGL
+character set and solves the needs of developers looking for
+width-compatible fonts to address document portability across
 platforms.
+
+%description -l pl.UTF-8
+Ten pakiet zawiera zbiory fontów o poprawionej czytelności na
+ekranie, pokrywających zestaw znaków paneuropejskich WGL,
+wychodzących naprzeciw potrzebom programistów poszukujących
+fontów o zgodnej szerokości na potrzeby przenośności dokumentów
+między platformami.
 
 %prep
 %setup -q -n croscorefonts-%{version}
@@ -72,5 +80,7 @@ fontpostinst TTF
 %{_ttffontsdir}/Cousine*.ttf
 %{_ttffontsdir}/Symbol*.ttf
 %{_ttffontsdir}/Tinos*.ttf
-%{_datadir}/fontconfig/conf.avail/*.conf
-%{_sysconfdir}/fonts/conf.d/*.conf
+%{_datadir}/fontconfig/conf.avail/30-0-google-croscore-*.conf
+%{_datadir}/fontconfig/conf.avail/62-google-croscore-*.conf
+%{_sysconfdir}/fonts/conf.d/30-0-google-croscore-*.conf
+%{_sysconfdir}/fonts/conf.d/62-google-croscore-*.conf
