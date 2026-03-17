@@ -2,7 +2,7 @@ Summary:	The width-compatible fonts for improved on-screen readability
 Summary(pl.UTF-8):	Fonty o zgodnej szerokości z poprawioną czytelnością na ekranie
 Name:		fonts-TTF-Google-croscore
 Version:	1.23.0
-Release:	2
+Release:	3
 License:	OFL
 Group:		Fonts
 Source0:	http://gsdview.appspot.com/chromeos-localmirror/distfiles/croscorefonts-%{version}.tar.gz
